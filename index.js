@@ -7,14 +7,14 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Members API Routes
+app.use("/api/members", require("./routes/api/members"));
+
 //init middleware
 app.use(logger);
 
 //set a static folder`
 app.use(express.static(path.join(__dirname, "public")));
-
-// Members API Routes
-app.use("/api/members", require("./routes/api/members"));
 
 const PORT = process.env.PORT || 5000;
 
