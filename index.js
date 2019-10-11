@@ -1,14 +1,16 @@
 const express = require("express");
 const path = require("path");
-const members = require("./Members");
-
+const logger = require("./middleware/logger");
 const app = express();
 
-//set a static folder
+//init middleware
+app.use(logger);
+
+//set a static folder`
 app.use(express.static(path.join(__dirname, "public")));
 
-//Gets all members
-app.get("/api/members", (req, res) => res.json(members));
+// Members API Routes
+app.use("/api/members", require("./routes/api/members"));
 
 const PORT = process.env.PORT || 5000;
 
