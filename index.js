@@ -3,6 +3,10 @@ const path = require("path");
 const logger = require("./middleware/logger");
 const app = express();
 
+//body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 //init middleware
 app.use(logger);
 
